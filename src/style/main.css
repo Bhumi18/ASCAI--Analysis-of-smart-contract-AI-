@@ -21,23 +21,10 @@
   font-weight: 700;
 }
 
-.connect-btn {
-  padding: 20px 50px;
-  font-size: 1.2rem;
-  color: #1e1e1e;
-  border: none;
-  font-family: "Comfortaa";
-  letter-spacing: 1px;
-  border-radius: 15px;
-  backdrop-filter: blur(23px);
-  background: linear-gradient(
-    90deg,
-    rgba(222, 255, 2, 0.8883928571428571) 13%,
-    rgba(0, 255, 255, 0.896796218487395) 100%
-  );
-}
 .extension-btn {
-  padding: 20px 50px;
+  padding: 20px;
+
+  width: 40%;
   font-size: 1.2rem;
   letter-spacing: 1px;
   font-family: "Comfortaa";

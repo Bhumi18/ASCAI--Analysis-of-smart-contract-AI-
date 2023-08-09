@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/ASCAI.png";
 import "../style/main.css";
+import ConnectButtonCustom from "./Connectbuttoncustom";
 
 function Navbar() {
   return (
@@ -17,8 +18,9 @@ function Navbar() {
             justifyContent: "space-evenly",
           }}
         >
-          <a className="extension-btn">Get extension</a>
-          <button className="connect-btn">Connect</button>
+          <button className="extension-btn">Get extension</button>
+
+          <ConnectButtonCustom />
         </div>
       </nav>
     </header>
