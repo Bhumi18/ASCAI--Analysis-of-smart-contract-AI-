@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import start from "../assets/start.png";
 import home from "../assets/home.png";
 import "../style/main.css";
@@ -13,7 +12,6 @@ function LandingPage() {
         <div className="home-left-section">
           <h1 className="home-title">Contract</h1>
           <h1 className="home-title">
-            {" "}
             Analysis - <span style={{ color: "white" }}>AI</span>
           </h1>
           <p className=" home-desc">
@@ -36,9 +34,11 @@ function LandingPage() {
                 color: "white",
                 padding: "0px 30px",
                 fontSize: "1.2rem",
+                fontFamily: "Fredoka-SemiBold",
+                letterSpacing: "2px",
               }}
             >
-              Try it first !
+              Try it first!
             </div>
           </div>
         </div>
@@ -49,7 +49,9 @@ function LandingPage() {
 
       <footer>
         <div className="footer-flex">
-          <div style={{ color: "#deff02", fontSize: "15px" }}>ASCSI © 2023</div>
+          <div style={{ color: "#deff02", fontSize: "15px" }}>
+            © 2023 ASCAI. All Rights Reserved.
+          </div>
         </div>
       </footer>
     </div>

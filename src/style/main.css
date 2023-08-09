@@ -2,120 +2,31 @@
   position: absolute;
   width: 100%;
   z-index: 1;
-  .navbar {
-    padding: 50px 30px;
-    display: flex;
-    z-index: 0;
-    margin: 0 auto;
-    width: 90%;
-    align-items: center;
-    justify-content: space-between;
-
-    .logo {
-      /* padding: 0 20px; */
-      flex: 1 1;
-      font-family: "Merriweather Sans";
-      font-weight: 700;
-
-      h1 {
-        line-height: 2;
-        font-size: 30px;
-        text-align: left;
-      }
-    }
-    .navmenu {
-      /* margin-left: auto; */
-      padding: 0 25px;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      list-style: none;
-      flex-wrap: wrap;
-
-      .navitem {
-        margin-left: 25px;
-        transition: transform 0.2s;
-
-        &:hover {
-          transform: scaleX(1.1);
-        }
-
-        .navlink {
-          font-size: 1.5rem;
-          font-family: "Merriweather Sans";
-          font-weight: 400;
-          color: white;
-          letter-spacing: 2px;
-          text-decoration: revert;
-        }
-      }
-    }
-
-    .hamburger {
-      background-color: #ff7700;
-      display: none;
-      margin-left: 10px;
-      color: rgb(29, 29, 29);
-      border: none;
-      border-radius: 8px;
-      padding: 0.25em 0.5em;
-      box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px,
-        4px 4px 0px 0px, 5px 5px 0px 0px;
-      position: relative;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-
-      .bar {
-        display: block;
-        width: 32px;
-        height: 3px;
-        margin: 5px auto;
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-        background-color: #ffffff;
-      }
-    }
-    .hamburger.active {
-      box-shadow: 0px 0px 0px 0px;
-      top: 5px;
-      left: 5px;
-    }
-    .button {
-      /* font-family: "Open Sans", sans-serif; */
-      font-size: 18px;
-      letter-spacing: 2px;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-weight: bolder;
-      color: rgb(0, 0, 0);
-      cursor: pointer;
-      background: #7effe0;
-      padding: 0.25em 0.5em;
-      /* margin-top: 12px; */
-      border-radius: 10px;
-      border: 4px solid rgb(0, 0, 0);
-      margin-bottom: 20px;
-      margin-top: 20px;
-    }
-
-    .button:active {
-      box-shadow: 0px 0px 0px 0px;
-      top: 5px;
-      left: 5px;
-    }
-  }
+}
+.navbar {
+  padding: 50px 30px;
+  display: flex;
+  z-index: 0;
+  margin: 0 auto;
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo h1 {
+  line-height: 2;
+  font-size: 30px;
+  text-align: left;
+  flex: 1 1;
+  font-family: "Merriweather Sans";
+  font-weight: 700;
 }
 
-.hr {
-  margin: 10px;
-  width: 70%;
-}
 .connect-btn {
   padding: 20px 50px;
   font-size: 1.2rem;
   color: #1e1e1e;
   border: none;
+  font-family: "Comfortaa";
   letter-spacing: 1px;
   border-radius: 15px;
   backdrop-filter: blur(23px);
@@ -129,6 +40,7 @@
   padding: 20px 50px;
   font-size: 1.2rem;
   letter-spacing: 1px;
+  font-family: "Comfortaa";
   color: #deff02;
   border: 1px solid #deff02;
   background: #ffffff1f;
@@ -168,35 +80,17 @@
       .navmenu.active {
         left: 0;
       }
-      .hamburger {
-        /* margin-left: auto; */
-        display: block;
-        cursor: pointer;
-      }
-
-      .hamburger.active .bar:nth-child(2) {
-        opacity: 0;
-      }
-
-      .hamburger.active .bar:nth-child(1) {
-        -webkit-transform: translateY(8px) rotate(45deg);
-        transform: translateY(8px) rotate(45deg);
-      }
-
-      .hamburger.active .bar:nth-child(3) {
-        -webkit-transform: translateY(-8px) rotate(-45deg);
-        transform: translateY(-8px) rotate(-45deg);
-      }
     }
   }
 }
 /* ............landing page.................. */
+
 .main-div-landing {
   background-color: #1e1e1e;
   min-height: 100vh;
 }
 .home-left-section {
-  width: 40%;
+  width: 50%;
   margin-left: 100px;
   display: flex;
   text-align: initial;
@@ -210,7 +104,7 @@
 }
 .hero-right-bg1 {
   width: 100%;
-  height: 100%;
+  height: 99%;
 }
 
 .landing-flex {
@@ -221,8 +115,9 @@
 .home-title {
   font-size: 5.2rem;
   letter-spacing: 2px;
+  line-height: 90px;
   color: #ffffff;
-  /* padding: 10px; */
+  font-family: "BalooBhai2";
   margin: 0;
   background: linear-gradient(
     90deg,
@@ -242,11 +137,12 @@
 
 .home-desc {
   font-size: 1rem;
+  font-family: "Fredoka";
   letter-spacing: 2px;
   padding: 20px 10px;
   color: white;
   margin: 0;
-  width: 80%;
+  width: 60%;
   line-height: 25px;
 }
 .start-btn-flex {
@@ -264,33 +160,12 @@
   position: absolute;
   width: 100%;
   padding: 20px 0px;
+  font-family: "Fredoka";
   bottom: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(30, 30, 30, 1) 17%,
-    rgba(30, 30, 30, 0) 100%
-  );
+  background-image: url("../assets/footer.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   align-items: center;
   z-index: 1;
   justify-content: space-around;
-}
-.home-btn {
-  background-color: #2dda8f;
-  border: 1px solid black;
-  margin: 10px 0px;
-  width: 200px;
-  padding: 15px;
-  font-size: 20px;
-  color: black;
-  border-radius: 15px;
-  box-shadow: 0 6px 32px -6px #2a23cf;
-  transition: 200ms ease;
-  &:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 6px 40px -6px #2a23cf;
-  }
-  &:active {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 32px -6px #2a23cf;
-  }
 }

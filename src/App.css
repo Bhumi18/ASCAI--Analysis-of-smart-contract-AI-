@@ -35,3 +35,21 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: "Fredoka";
+  src: url(../public/Fredoka-Light.ttf);
+}
+
+@font-face {
+  font-family: "BalooBhai2";
+  src: url(../public/BalooBhai2-Medium.ttf);
+}
+@font-face {
+  font-family: "Comfortaa";
+  src: url(../public/Comfortaa-Medium.ttf);
+}
+@font-face {
+  font-family: "Fredoka-SemiBold";
+  src: url(../public/Fredoka-SemiBold.ttf);
+}

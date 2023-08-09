@@ -3,12 +3,6 @@ import logo from "../assets/ASCAI.png";
 import "../style/main.css";
 
 function Navbar() {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  function handleClick() {
-    setIsExpanded(!isExpanded);
-  }
-
   return (
     <header className="header">
       <nav className="navbar">
@@ -26,14 +20,6 @@ function Navbar() {
           <a className="extension-btn">Get extension</a>
           <button className="connect-btn">Connect</button>
         </div>
-
-        <button
-          className={isExpanded === false ? "hamburger" : "hamburger active"}
-        >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </button>
       </nav>
     </header>
   );
