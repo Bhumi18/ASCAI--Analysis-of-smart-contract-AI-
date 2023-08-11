@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<LandingPage />}></Route>
           <Route
-            path="/contract-details/:from/:to/:data"
+            path="/contract-details/:chainId/:from/:to/:value/:data"
             element={<ContractDetails />}
           ></Route>
         </Routes>
