@@ -10,7 +10,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<LandingPage />}></Route>
-          <Route path="/contract-details" element={<ContractDetails />}></Route>
+          <Route
+            path="/contract-details/:from/:to/:data"
+            element={<ContractDetails />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -3,8 +3,10 @@ import Navbar from "./Navbar";
 import img from "../assets/hero.png";
 import img2 from "../assets/img2.png";
 import FunctionTree from "./FunctionTree";
+import { useParams } from "react-router-dom";
 
 function ContractDetails() {
+  const { from, to, data } = useParams();
   return (
     <>
       <div className="contract-details-main">

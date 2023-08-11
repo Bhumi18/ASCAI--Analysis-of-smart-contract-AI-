@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import logo from "../assets/ASCAI.png";
+import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 import "../style/main.css";
-import ConnectButtonCustom from "./Connectbuttoncustom";
+// import ConnectButtonCustom from "./Connectbuttoncustom";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+
   return (
     <header className="header">
       <nav className="navbar">
-        <img src={logo} alt="" style={{ width: "100px" }} />
+        <img src={logo} alt="" style={{ width: "200px" }} />
 
         <div
           style={{
@@ -18,9 +22,11 @@ function Navbar() {
             justifyContent: "space-evenly",
           }}
         >
-          <button className="extension-btn">Get extension</button>
+          <Link to="https://ascai-snap.vercel.app/">
+            <button className="extension-btn">Install Snap</button>
+          </Link>
 
-          <ConnectButtonCustom />
+          {/* <ConnectButtonCustom /> */}
         </div>
       </nav>
     </header>

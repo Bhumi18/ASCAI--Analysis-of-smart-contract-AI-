@@ -68,16 +68,6 @@ export default function FunctionTree() {
     [setEdges]
   );
 
-  const [selectedNode, setSelectedNode] = useState("");
-
-  const handleNodeClick = (event, node) => {
-    setSelectedNode(node);
-  };
-
-  const closePopup = () => {
-    setSelectedNode(null);
-  };
-
   return (
     <div style={{ height: "100vh" }}>
       <ReactFlow
@@ -86,7 +76,7 @@ export default function FunctionTree() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
-        onElementClick={handleNodeClick} // Handle node click
+        // Handle node click
       >
         <Controls />
 
@@ -109,36 +99,6 @@ export default function FunctionTree() {
           `}
         </style>
       </ReactFlow>
-
-      {/* Popup */}
-      {selectedNode && (
-        <div className="popup">
-          <div className="popup-content">
-            <h3>Node Details</h3>
-            <p>{selectedNode.data.label}</p>
-            <p>{selectedNode.data.content}</p>
-            <button onClick={closePopup}>Close</button>
-          </div>
-        </div>
-      )}
-      <style>
-        {`
-          .popup {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-          }
-
-          .popup-content {
-            text-align: center;
-          }
-        `}
-      </style>
     </div>
   );
 }
