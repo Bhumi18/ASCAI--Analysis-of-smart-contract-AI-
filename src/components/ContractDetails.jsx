@@ -3,12 +3,17 @@ import Navbar from "./Navbar";
 import img from "../assets/hero.png";
 import { ethers } from "ethers";
 import FunctionTree from "./FunctionTree";
+import NLPData from "./NLPData";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import * as dotenv from "dotenv";
+import "../style/tabs.css";
+
 dotenv.config();
 
 function ContractDetails() {
+  const [activeTab, setActiveTab] = useState("tab1");
+
   const TENDERLY_USER = process.env.REACT_APP_TENDERLY_USER;
   const TENDERLY_PROJECT = process.env.REACT_APP_TENDERLY_PROJECT;
   const TENDERLY_ACCESS_KEY = process.env.REACT_APP_TENDERLY_ACCESS_KEY;
@@ -21,7 +26,7 @@ function ContractDetails() {
   const [contractAddress, setContractAddress] = useState();
   const [balance, setBalance] = useState();
   const [yourBalance, setYourBalance] = useState();
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   const getAPIData = async () => {
     const resp = await axios.post(
@@ -49,6 +54,7 @@ function ContractDetails() {
 
     const transaction = resp.data.transaction;
     console.log(transaction);
+    console.log(JSON.stringify(transaction, null, 2));
 
     setContractName(transaction.transaction_info.call_trace.contract_name);
     setContractAddress(transaction.transaction_info.contract_address);
@@ -69,11 +75,17 @@ function ContractDetails() {
     // recursive
     const allCalls = extractCalls(transaction.transaction_info.call_trace);
     setCalls(allCalls);
-    setError([
-      transaction.transaction_info.stack_trace[0].name,
-      transaction.transaction_info.stack_trace[0].code,
-      transaction.transaction_info.stack_trace[0].error,
-    ]);
+
+    if (
+      transaction.transaction_info.stack_trace &&
+      transaction.transaction_info.stack_trace[0].error
+    ) {
+      setError([
+        transaction.transaction_info.stack_trace[0].name,
+        transaction.transaction_info.stack_trace[0].code,
+        transaction.transaction_info.stack_trace[0].error,
+      ]);
+    }
   };
 
   function extractCalls(data) {
@@ -92,6 +104,10 @@ function ContractDetails() {
     }
     return calls;
   }
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
 
   useEffect(() => {
     getAPIData();
@@ -227,7 +243,7 @@ function ContractDetails() {
                         width: "40%",
                       }}
                     >
-                      {error[2] ? "Expected Error:" : ""}
+                      {error ? "Expected Error:" : ""}
                     </div>{" "}
                     <span
                       style={{
@@ -240,12 +256,27 @@ function ContractDetails() {
                         fontWeight: "600",
                       }}
                     >
-                      {error[2]}
+                      {error ? error[2] : "Success"}
                     </span>
                   </div>
                 </div>
               </div>
-              <FunctionTree data={calls} error={error} />
+              <div>
+                <div className="tabs">
+                  <button onClick={() => handleTabChange("tab1")}>
+                    Visual View
+                  </button>
+                  <button onClick={() => handleTabChange("tab2")}>
+                    Text View
+                  </button>
+                </div>
+                <div>
+                  {activeTab === "tab1" && (
+                    <FunctionTree data={calls} error={error} />
+                  )}
+                  {activeTab === "tab2" && <NLPData />}
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -68,6 +68,7 @@ const initialEdges = [
 
 export default function FunctionTree({ data, error }) {
   console.log(error);
+  console.log(data);
   const [nodes, setNodes, onNodesChange] = useNodesState();
   const [edges, setEdges, onEdgesChange] = useEdgesState();
 
@@ -96,13 +97,13 @@ export default function FunctionTree({ data, error }) {
     }));
 
     console.log(initialNodes);
-    if (error[2] != null) {
+    if (error != null) {
       initialNodes.push({
         id: String(data.length + 1),
         position: { x: (data.length + 1) * 150, y: (data.length + 1) * 100 }, // Adjust position as needed
         data: {
-          label: `contract name: ${error[0]}\n
-        method name: ${error[1]}\n
+          label: `contract name: ${error[0] ? error[0] : "Unknown"}\n
+        method name: ${error[1] ? error[1] : "Unknown"}\n
         error: ${error[2]}`,
         },
         style: {
@@ -148,16 +149,22 @@ export default function FunctionTree({ data, error }) {
   if (data) {
     return (
       <div style={{ height: "100vh" }}>
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          // Handle node click
-        >
-          <Controls />
-        </ReactFlow>
+        {data.length != 0 ? (
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            // Handle node click
+          >
+            <Controls />
+          </ReactFlow>
+        ) : (
+          <h1 style={{ fontSize: "1.2rem", marginTop: "50px" }}>
+            This transaction does not have an internal function calls
+          </h1>
+        )}
       </div>
     );
   } else {
