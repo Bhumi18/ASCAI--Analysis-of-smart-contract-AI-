@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import img from "../assets/hero.png";
-import img2 from "../assets/img2.png";
+import { ethers } from "ethers";
 import FunctionTree from "./FunctionTree";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -12,10 +12,17 @@ function ContractDetails() {
   const TENDERLY_USER = process.env.REACT_APP_TENDERLY_USER;
   const TENDERLY_PROJECT = process.env.REACT_APP_TENDERLY_PROJECT;
   const TENDERLY_ACCESS_KEY = process.env.REACT_APP_TENDERLY_ACCESS_KEY;
+  console.log(TENDERLY_USER, TENDERLY_PROJECT, TENDERLY_ACCESS_KEY);
 
   const { chainId, from, to, value, data } = useParams();
 
   const [calls, setCalls] = useState();
+  const [contractName, setContractName] = useState();
+  const [contractAddress, setContractAddress] = useState();
+  const [balance, setBalance] = useState();
+  const [yourBalance, setYourBalance] = useState();
+  const [error, setError] = useState();
+
   const getAPIData = async () => {
     const resp = await axios.post(
       `https://api.tenderly.co/api/v1/account/${TENDERLY_USER}/project/${TENDERLY_PROJECT}/simulate`,
@@ -43,10 +50,30 @@ function ContractDetails() {
     const transaction = resp.data.transaction;
     console.log(transaction);
 
+    setContractName(transaction.transaction_info.call_trace.contract_name);
+    setContractAddress(transaction.transaction_info.contract_address);
+    setBalance(
+      parseInt(
+        ethers.utils.formatEther(
+          transaction.transaction_info.call_trace.to_balance
+        )
+      )
+    );
+    setYourBalance(
+      parseInt(
+        ethers.utils.formatEther(
+          transaction.transaction_info.call_trace.from_balance
+        )
+      )
+    );
     // recursive
     const allCalls = extractCalls(transaction.transaction_info.call_trace);
-    // console.log(allCalls);
     setCalls(allCalls);
+    setError([
+      transaction.transaction_info.stack_trace[0].name,
+      transaction.transaction_info.stack_trace[0].code,
+      transaction.transaction_info.stack_trace[0].error,
+    ]);
   };
 
   function extractCalls(data) {
@@ -56,7 +83,6 @@ function ContractDetails() {
       for (const call of data.calls) {
         calls.push([
           call.contract_name,
-          call.function_name,
           call.function_name,
           call.decoded_input,
           call.decoded_output,
@@ -70,108 +96,164 @@ function ContractDetails() {
   useEffect(() => {
     getAPIData();
   }, []);
-  return (
-    <>
-      <div className="contract-details-main">
-        <Navbar />
+  if (calls) {
+    return (
+      <>
+        <div className="contract-details-main">
+          <Navbar />
 
-        <div className="contract-heroImg">
-          <img src={img} style={{ width: "100%", height: "60vh" }}></img>
-        </div>
+          <div className="contract-heroImg">
+            <img src={img} style={{ width: "100%", height: "60vh" }}></img>
+          </div>
 
-        <div className="contract-main-flex">
-          <h1 className="contract-heading">Smart Contract Details</h1>
-          {/* <button onClick={() => getAPIData()}>getData</button> */}
-          <div className="contract-details-section-main">
-            <div className="contract-details-sub-section">
-              <div>
-                <div className="section2">
-                  <div
-                    style={{
-                      color: "#deff02",
-                      fontSize: "1.2rem",
-                      letterSpacing: "1px",
-                      width: "40%",
-                    }}
-                  >
-                    Contract Name:
-                  </div>{" "}
-                  <span
-                    style={{
-                      backgroundColor: "#4d4d4d",
-                      color: "white",
-                      letterSpacing: "1px",
-                      padding: "10px 20px",
-                      margin: "0px 30px",
-                      borderRadius: "10px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Dao
-                  </span>
-                </div>
-                <div className="section2">
-                  <div
-                    style={{
-                      color: "#deff02",
-                      fontSize: "1.2rem",
-                      letterSpacing: "1px",
-                      width: "40%",
-                    }}
-                  >
-                    Contract Address:
-                  </div>{" "}
-                  <span
-                    style={{
-                      backgroundColor: "#4d4d4d",
-                      color: "white",
-                      letterSpacing: "1px",
-                      padding: "10px 20px",
-                      margin: "0px 30px",
-                      borderRadius: "10px",
-                      fontWeight: "600",
-                      whiteSpace: " nowrap",
-                      overflow: " hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    74854654654657864564856347856347856476
-                  </span>
-                </div>
+          <div className="contract-main-flex">
+            <h1 className="contract-heading">Smart Contract Details</h1>
+            {/* <button onClick={() => getAPIData()}>getData</button> */}
+            <div className="contract-details-section-main">
+              <div className="contract-details-sub-section">
+                <div>
+                  <div className="section2">
+                    <div
+                      style={{
+                        color: "#deff02",
+                        fontSize: "1.2rem",
+                        letterSpacing: "1px",
+                        width: "40%",
+                      }}
+                    >
+                      Contract Name:
+                    </div>{" "}
+                    <span
+                      style={{
+                        backgroundColor: "#4d4d4d",
+                        color: "white",
+                        letterSpacing: "1px",
+                        padding: "10px 20px",
+                        margin: "0px 30px",
+                        borderRadius: "10px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {contractName}
+                    </span>
+                  </div>
+                  <div className="section2">
+                    <div
+                      style={{
+                        color: "#deff02",
+                        fontSize: "1.2rem",
+                        letterSpacing: "1px",
+                        width: "40%",
+                      }}
+                    >
+                      Contract Address:
+                    </div>{" "}
+                    <span
+                      style={{
+                        backgroundColor: "#4d4d4d",
+                        color: "white",
+                        letterSpacing: "1px",
+                        padding: "10px 20px",
+                        margin: "0px 30px",
+                        borderRadius: "10px",
+                        fontWeight: "600",
+                        whiteSpace: " nowrap",
+                        overflow: " hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {contractAddress}
+                    </span>
+                  </div>
 
-                <div className="section2">
-                  <div
-                    style={{
-                      color: "#deff02",
-                      fontSize: "1.2rem",
-                      letterSpacing: "1px",
-                      width: "40%",
-                    }}
-                  >
-                    Contract Version:
-                  </div>{" "}
-                  <span
-                    style={{
-                      backgroundColor: "#4d4d4d",
-                      color: "white",
-                      letterSpacing: "1px",
-                      padding: "10px 20px",
-                      margin: "0px 30px",
-                      borderRadius: "10px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    2.2
-                  </span>
+                  <div className="section2">
+                    <div
+                      style={{
+                        color: "#deff02",
+                        fontSize: "1.2rem",
+                        letterSpacing: "1px",
+                        width: "40%",
+                      }}
+                    >
+                      Contract Balance:
+                    </div>{" "}
+                    <span
+                      style={{
+                        backgroundColor: "#4d4d4d",
+                        color: "white",
+                        letterSpacing: "1px",
+                        padding: "10px 20px",
+                        margin: "0px 30px",
+                        borderRadius: "10px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {balance} ETH
+                    </span>
+                  </div>
+
+                  <div className="section2">
+                    <div
+                      style={{
+                        color: "#deff02",
+                        fontSize: "1.2rem",
+                        letterSpacing: "1px",
+                        width: "40%",
+                      }}
+                    >
+                      Your Balance:
+                    </div>{" "}
+                    <span
+                      style={{
+                        backgroundColor: "#4d4d4d",
+                        color: "white",
+                        letterSpacing: "1px",
+                        padding: "10px 20px",
+                        margin: "0px 30px",
+                        borderRadius: "10px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {yourBalance} ETH
+                    </span>
+                  </div>
+
+                  <div className="section2">
+                    <div
+                      style={{
+                        color: "#deff02",
+                        fontSize: "1.2rem",
+                        letterSpacing: "1px",
+                        width: "40%",
+                      }}
+                    >
+                      {error[2] ? "Expected Error:" : ""}
+                    </div>{" "}
+                    <span
+                      style={{
+                        backgroundColor: "#4d4d4d",
+                        color: "white",
+                        letterSpacing: "1px",
+                        padding: "10px 20px",
+                        margin: "0px 30px",
+                        borderRadius: "10px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {error[2]}
+                    </span>
+                  </div>
                 </div>
               </div>
+              <FunctionTree data={calls} error={error} />
             </div>
-            <FunctionTree data={calls} />
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    return "loading";
+  }
 }
 
 export default ContractDetails;

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -66,50 +66,98 @@ const initialEdges = [
   // ... other initial edges ...
 ];
 
-export default function FunctionTree({ data }) {
-  console.log(data);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+export default function FunctionTree({ data, error }) {
+  console.log(error);
+  const [nodes, setNodes, onNodesChange] = useNodesState();
+  const [edges, setEdges, onEdgesChange] = useEdgesState();
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
   );
 
-  function FlowRenderer(props) {
-    const { flowData } = props;
+  const computeData = async () => {
+    console.log(data);
+    // Use map to transform the dataInfo array into initialNodes
+    const initialNodes = data.map((info, index) => ({
+      id: String(index + 1),
+      position: { x: (index + 1) * 150, y: (index + 1) * 100 }, // Adjust position as needed
+      data: {
+        label: `contract name: ${info[0] ? info[0] : "Not Available"}\n
+          function name: ${info[1] ? info[1] : "Not Available"}`,
+      },
+      style: {
+        background: "rgb(77, 77, 77)",
+        color: "white",
+        fontSize: "1rem",
+        width: "300px",
+        borderRadius: "10px", // Change this to the desired background color
+      },
+    }));
 
-    return (
-      <ReactFlowProvider>
-        <ReactFlow elements={flowData}></ReactFlow>
-      </ReactFlowProvider>
-    );
-  }
+    console.log(initialNodes);
+    if (error[2] != null) {
+      initialNodes.push({
+        id: String(data.length + 1),
+        position: { x: (data.length + 1) * 150, y: (data.length + 1) * 100 }, // Adjust position as needed
+        data: {
+          label: `contract name: ${error[0]}\n
+        method name: ${error[1]}\n
+        error: ${error[2]}`,
+        },
+        style: {
+          background: "rgb(77, 77, 77)",
+          color: "red",
+          fontSize: "1rem",
+          width: "300px",
+          borderRadius: "10px", // Change this to the desired background color
+        },
+      });
+    }
+    setNodes(initialNodes);
+
+    // Create edges based on the dynamically generated initialNodes
+
+    const initialEdges = [];
+
+    for (let i = 0; i < initialNodes.length - 1; i++) {
+      initialEdges.push({
+        id: `e${i + 1}-${i + 2}`,
+        source: String(i + 1),
+        target: String(i + 2),
+      });
+      initialEdges.push({
+        id: `e${data.length + 1}-${data.length + 2}`,
+        source: String(data.length + 1),
+        target: String(data.length + 2),
+      });
+      setEdges(initialEdges);
+    }
+
+    console.log(initialEdges);
+    if (error) {
+    }
+  };
+
+  useEffect(() => {
+    if (data) {
+      computeData();
+    }
+  }, [data]);
 
   if (data) {
     return (
       <div style={{ height: "100vh" }}>
-        {data.map((flowData, index) => (
-          <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
-            // Handle node click
-          >
-            <Controls />
-            <h1 style={{ color: "red" }}>hey</h1>
-          </ReactFlow>
-          // <div>
-          //   {console.log(flowData[0])}
-          //   <ReactFlow
-          //     key={index}
-          //     flowData={flowData}
-          //     style={{ color: "ffffff" }}
-          //   ></ReactFlow>
-          // </div>
-        ))}
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          // Handle node click
+        >
+          <Controls />
+        </ReactFlow>
       </div>
     );
   } else {

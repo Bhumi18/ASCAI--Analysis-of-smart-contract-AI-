@@ -15,9 +15,8 @@ function LandingPage() {
             Analysis - <span style={{ color: "white" }}>AI</span>
           </h1>
           <p className=" home-desc">
-            "A Powerful Browser Extension to Unravel the Secrets of Smart
-            Contract Functions and Enhance Transparency in Blockchain
-            Interactions"
+            "A Metamask Snap to Unravel the Secrets of Smart Contract Functions
+            and Enhance Transparency in Blockchain Interactions"
           </p>
 
           <div
