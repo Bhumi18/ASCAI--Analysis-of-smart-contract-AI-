@@ -11,7 +11,10 @@ function Navbar() {
   return (
     <header className="header">
       <nav className="navbar">
-        <img src={logo} alt="" style={{ width: "200px" }} />
+        <Link to="/">
+          {" "}
+          <img src={logo} alt="" style={{ width: "200px" }} />
+        </Link>
 
         <div
           style={{

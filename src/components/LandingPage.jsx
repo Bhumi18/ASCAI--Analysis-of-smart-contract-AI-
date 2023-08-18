@@ -3,6 +3,7 @@ import start from "../assets/start.png";
 import home from "../assets/home.png";
 import "../style/main.css";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   return (
@@ -27,17 +28,21 @@ function LandingPage() {
               justifyContent: "space-between",
             }}
           >
-            <img src={start} className="start-btn-flex"></img>
+            <Link to="https://ascai-snap.vercel.app/">
+              {" "}
+              <img src={start} className="start-btn-flex"></img>
+            </Link>
+
             <div
               style={{
                 color: "white",
                 padding: "0px 30px",
-                fontSize: "1.2rem",
+                fontSize: "1.1rem",
                 fontFamily: "Fredoka-SemiBold",
                 letterSpacing: "2px",
               }}
             >
-              Try it first!
+              First Install Snap!
             </div>
           </div>
         </div>

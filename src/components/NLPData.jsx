@@ -5,11 +5,13 @@ export default function NLPData({ data, error }) {
     <div>
       <ul
         style={{
-          marginLeft: "20px",
-          listStyleType: "disc",
-          fontSize: "1.2rem;",
-          margin: "20px 0px",
-          textAlign: "left",
+          listStyleType: "disclosure-closed",
+          width: "70%",
+          margin: "50px auto",
+          letterSpacing: "1px",
+          fontSize: "1rem",
+          textAlign: "justify",
+          fontFamily: "Fredoka",
         }}
       >
         <li style={{ margin: "20px 0px" }}>

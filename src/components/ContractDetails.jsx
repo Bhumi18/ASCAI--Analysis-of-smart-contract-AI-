@@ -263,10 +263,16 @@ function ContractDetails() {
               </div>
               <div>
                 <div className="tabs">
-                  <button onClick={() => handleTabChange("tab1")}>
+                  <button
+                    onClick={() => handleTabChange("tab1")}
+                    className={activeTab === "tab1" ? "active" : ""}
+                  >
                     Visual View
                   </button>
-                  <button onClick={() => handleTabChange("tab2")}>
+                  <button
+                    onClick={() => handleTabChange("tab2")}
+                    className={activeTab === "tab2" ? "active" : ""}
+                  >
                     Text View
                   </button>
                 </div>
@@ -283,7 +289,11 @@ function ContractDetails() {
       </>
     );
   } else {
-    return "loading";
+    return (
+      <div className="loader-container">
+        <div className="loader-spinner"></div>
+      </div>
+    );
   }
 }
 

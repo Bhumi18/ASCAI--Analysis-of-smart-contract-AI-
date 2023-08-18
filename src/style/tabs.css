@@ -1,5 +1,5 @@
 .tabs {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .tabs button {
@@ -10,7 +10,12 @@
 .tabs button:hover {
   transform: scale(1.01);
 }
-
+.tabs button.active {
+  background: #ffffff1f;
+  border: 1px solid #deff02;
+  border-radius: 15px;
+  color: #deff02;
+}
 button {
   margin-right: 15px;
   padding: 10px 20px;
@@ -20,13 +25,10 @@ button {
   letter-spacing: 1px;
   border-radius: 15px;
   backdrop-filter: blur(23px);
-  background: linear-gradient(
-    90deg,
-    rgba(222, 255, 2, 0.8883928571428571) 13%,
-    rgba(0, 255, 255, 0.896796218487395) 100%
-  );
-  color: #1e1e1e;
-  border: none;
+  background: #ffffff1f;
+
+  border-radius: 15px;
+  color: #deff02;
   border-radius: 10px;
   letter-spacing: 1.5px;
 

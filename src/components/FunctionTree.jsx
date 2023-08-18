@@ -9,6 +9,8 @@ import ReactFlow, {
 } from "reactflow";
 import "../style/main.css";
 import "reactflow/dist/style.css";
+// import Loader from "react-loader-spinner";
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const initialNodes = [
   {
@@ -91,6 +93,7 @@ export default function FunctionTree({ data, error }) {
         background: "rgb(77, 77, 77)",
         color: "white",
         fontSize: "1rem",
+        fontFamily: "Fredoka",
         width: "300px",
         borderRadius: "10px", // Change this to the desired background color
       },
@@ -108,8 +111,9 @@ export default function FunctionTree({ data, error }) {
         },
         style: {
           background: "rgb(77, 77, 77)",
-          color: "red",
+          color: "white",
           fontSize: "1rem",
+          fontFamily: "Fredoka",
           width: "300px",
           borderRadius: "10px", // Change this to the desired background color
         },
