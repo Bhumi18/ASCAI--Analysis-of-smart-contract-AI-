@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# ASCAI: Enhancing Blockchain Transparency with MetaMask Snap 🌐🔒
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ASCAI simplifies blockchain interactions by providing a **MetaMask Snap** that simulates contract transactions before confirmation. Designed for both technical and non-technical users, it empowers informed decision-making through clear and actionable insights.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Project Overview
+When interacting with smart contracts, users often lack clarity about what happens in the backend. ASCAI bridges this gap by:
+- **Simulating transactions** with [Tenderly](https://tenderly.co/) to preview potential outcomes.
+- **Providing insights** through intuitive visuals and alerts for detected vulnerabilities.
+- **Leveraging AI** to process transaction data and explain it in simple terms using Natural Language Processing (NLP).
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ How It Works
+### 1. **Transaction Simulation**
+- **Tool:** [Tenderly](https://tenderly.co/)
+- Simulates transactions before execution to inform users of potential outcomes.
+- Identifies vulnerabilities, enhancing trust and safety.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. **MetaMask Snap Integration**
+- Provides detailed transaction previews directly within MetaMask.
+- Simplifies complex contract data into actionable insights.
 
-### `npm test`
+### 3. **AI-Powered Explanations**
+- **Model:** Prebuilt AI (e.g., OpenAI)
+- Processes simulation results using NLP to create user-friendly explanations.
+- Helps non-technical users understand blockchain interactions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 4. **User-Friendly Frontend**
+- **Framework:** React
+- Delivers a clean, intuitive interface for viewing transaction details and simulation results.
